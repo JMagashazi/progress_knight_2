@@ -812,6 +812,12 @@ function updateTaskRows() {
         maxLevel.textContent = task.maxLevel
         gameData.rebirthOneCount > 0 ? maxLevel.classList.remove("hidden") : maxLevel.classList.add("hidden")
 
+        if (task instanceof Skill) {
+            if (task.level >= task.maxLevel * 1.1) {
+                row.getElementsByClassName("level")[0].color = "green"
+            }
+        }
+
         var progressFill = row.getElementsByClassName("progressFill")[0]
         progressFill.style.width = task.xp / task.getMaxXp() * 100 + "%"
         task == gameData.currentJob || task == gameData.currentSkill ? progressFill.classList.add("current") : progressFill.classList.remove("current")
